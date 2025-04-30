@@ -14,7 +14,7 @@ conn = psycopg2.connect(database=database, user=user, password=password, host=ho
 
 cur = conn.cursor()
 migration = ""
-with open("D:\Data\Py_хранилище\Project_for_homework\\1.0 migration.sql") as f:
+with open("1.0 migration.sql") as f:
     migration = f.read()
 
 # with conn.cursor() as cursor:
@@ -71,10 +71,8 @@ def save(car_info,
 
     return "OK"
 
-
-def add_accidents(plate_number,
-                  car_accidents):  # add_accidents(plate_number, (plate_num_cars, date, damage_description))
-                                   # add_accidents("y775yy/96", ("y777yy/99", "10.05.2025", "Повреждение заднего бампера"))
+def add_accidents(plate_number, car_accidents):  # add_accidents(plate_number, (plate_num_cars, date, damage_description))
+    # add_accidents("y775yy/96", ("y777yy/99", "10.05.2025", "Повреждение заднего бампера"))
     cur.execute(
         'SELECT id, model, "year", color, plate_number, car_type FROM bayandin_ponomarev.cars WHERE plate_number = %s;',
         (plate_number,))
@@ -92,6 +90,48 @@ def add_accidents(plate_number,
     conn.commit()
     return "OK"
 
+
+
+
+
+def update_accidents(plate_number,
+                  car_accidents):  # update_accidents(plate_number, (plate_num_cars, date, damage_description))
+                                   # update_accidents("y775yy/96", ("y777yy/99", "10.05.2025", "Повреждение заднего бампера"))
+    cur.execute(
+        'SELECT id, model, "year", color, plate_number, car_type FROM bayandin_ponomarev.cars WHERE plate_number = %s;',
+        (plate_number,))
+    id_cars = cur.fetchall()[0][0]
+    !!!!!!
+    plate_num_cars = car_accidents[0]
+    date = car_accidents[1]
+    damage_description = car_accidents[2]
+
+    !!!!!!!
+    cur.execute(
+        "UPDATE INTO bayandin_ponomarev.accidents (id_cars, plate_num_cars, date, damage_description) VALUES (%s, %s, %s, %s);",
+        (id_cars, plate_num_cars, date, damage_description))
+
+    conn.commit()
+    return "OK"
+
+def update_car(car_info):  # update_car(("Dodge Challenger", 2021, "Purple", "к355нм/71", "coupe"))
+    # update_car((model, year, color, plate_number, car_type))
+
+    !!!!!!
+    model = car_info[0]
+    year = car_info[1]
+    color = car_info[2]
+    plate_number = car_info[3]
+    car_type = car_info[4]
+    !!!!!!
+    cur.execute(
+    "UPDATE INTO bayandin_ponomarev.cars (model, year, color, plate_number, car_type) VALUES (%s, %s, %s, %s, %s);",
+    (model, year, color, plate_number, car_type))
+
+
+    conn.commit()
+
+    return "OK"
 
 # Json
 class Car(BaseModel):

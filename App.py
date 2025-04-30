@@ -164,6 +164,40 @@ def POST_add_accident():
     return "Something went wrong"
 
 
+@app.route("/service/cars/{id}", methods=['PUT'])
+def PUT_update_car():
+
+    data = request.get_json()
+
+    model = data['model']
+    year = data['year']
+    color = data['color']
+    plate_number = data['plate_number']
+    car_type = data['car_type']
+
+
+    update_car((model, year, color, plate_number, car_type))
+    return "OK"
+
+
+
+@app.route("/service/accidents/{id", methods=['PUT'])
+def PUT_update_accident():
+
+    data = request.get_json()
+    plate_number = data['plate_number']
+    plate_num_cars = data['plate_num_cars']
+    date = data['date']
+    damage_description = data['damage_description']
+
+    if plate_number and plate_num_cars and date and damage_description:
+        update_accidents(
+            plate_number=plate_number,
+            car_accidents=(plate_num_cars, date, damage_description)
+        )
+        return "OK"
+    return "Something went wrong"
+
 if __name__ == '__main__':
 
  app.run(port=8080, host='127.0.0.1')

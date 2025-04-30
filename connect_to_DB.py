@@ -14,7 +14,7 @@ conn = psycopg2.connect(database=database, user=user, password=password, host=ho
 
 cur = conn.cursor()
 migration = ""
-with open("1.0 migration.sql") as f:
+with open("D:\Data\Py_хранилище\Project_for_homework\\1.0 migration.sql") as f:
     migration = f.read()
 
 # with conn.cursor() as cursor:

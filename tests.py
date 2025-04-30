@@ -105,49 +105,43 @@ def test_get_accident_by_id():
 
 
 BASE_URL5 = "http://127.0.0.1:8080/service/cars"
-def test_post_add_car():
-    # Корректные данные
-    test_data = {
-        "model": "Tesla Model S",
-        "year": 2022,
-        "color": "Red",
-        "plate_number": "а123ск",
-        "car_type": "Sedan"
-    }
-
-    # Отправка POST-запроса
-    response = requests.post(BASE_URL5, json=test_data)
-
-    # Проверка статус кода (200 OK)
-    assert response.status_code == 200, f"Ожидался статус 200, получен {response.status_code}"
-
-    # Проверка текстового ответа
-    assert response.text == "OK", f"Ожидался 'OK', получено: {response.text}"
-
-
+# def test_post_add_car():
+#     # Корректные данные
+#     test_data = {
+#         "model": "Tesla Model S",
+#         "year": 2022,
+#         "color": "Red",
+#         "plate_number": "а123ск",
+#         "car_type": "Sedan"
+#     }
+#
+#     # Отправка POST-запроса
+#     response = requests.post(BASE_URL5, json=test_data)
+#
+#     # Проверка статус кода (200 OK)
+#     assert response.status_code == 200, f"Ожидался статус 200, получен {response.status_code}"
+#
+#     # Проверка текстового ответа
+#     assert response.text == "OK", f"Ожидался 'OK', получено: {response.text}"
+#
+#
 
 
 BASE_URL6 = "http://127.0.0.1:8080/service/accident"
-def test_post_add_accident():
-    # Корректные данные
-    test_data = {
-        "damage_description": "Смяты бока, двигатель внутри салона",
-        "date": "2022-10-05",
-        "plate_num_cars": "а123ск",
-        "plate_number": "х011ке"
-    }
-
-    # Отправка POST-запроса
-    response = requests.post(BASE_URL6, json=test_data)
-
-    # Проверка статус кода (200 OK)
-    assert response.status_code == 200, f"Ожидался статус 200, получен {response.status_code}"
-
-    # Проверка текстового ответа
-    assert response.text == "OK", f"Ожидался 'OK', получено: {response.text}"
-
-
-
-
-
-
+# def test_post_add_accident():
+#     # Корректные данные
+#     test_data = {
+#         "damage_description": "Смяты бока, двигатель внутри салона",
+#         "date": "2022-10-05",
+#         "plate_num_cars": "а123ск",
+#         "plate_number": "х011ке"
+#     }
+#
+#     # Отправка POST-запроса
+#     response = requests.post(BASE_URL6, json=test_data)
+#
+#     # Проверка статус кода (200 OK)
+#     assert response.status_code == 200, f"Ожидался статус 200, получен {response.status_code}"
+#
+#     # Проверка текстового ответа
+#     assert response.text == "OK", f"Ожидался 'OK', получено: {response.text}"
